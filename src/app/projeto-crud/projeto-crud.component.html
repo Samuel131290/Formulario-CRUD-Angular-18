@@ -1,0 +1,86 @@
+<body>
+    <form [formGroup]="formulario">
+        <!-- Verificando as validações no inputs -->
+        <div>
+            @if (formulario.get('nome').hasError('required') && formulario.get('nome').touched) {
+            <p class="alert alert-warning">O campo nome é obrigatório!</p>
+            }
+
+            @if (formulario.get('nome').hasError('minlength') && formulario.get('nome').touched) {
+            <p class="alert alert-warning">O campo nome precisa ter no minimo 3 caracteres!</p>
+            }
+
+            @if (formulario.get('nome').hasError('onlyLetters')) {
+            <p class="alert alert-warning">O campo nome deve conter apenas letras!</p>
+            }
+        </div>
+
+        <div>
+            @if (formulario.get('idade').hasError('required') && formulario.get('idade').touched) {
+            <p class="alert alert-warning">O campo idade é obrigatório!</p>
+            }
+
+            @if (formulario.get('idade').hasError('min') && formulario.get('idade').touched) {
+            <p class="alert alert-warning">Sistema não autorizado à menores de idade!</p>
+            }
+
+            @if (formulario.get('idade').hasError('max') && formulario.get('idade').touched) {
+            <p class="alert alert-warning">Idade inválida! Informe uma idade válida!</p>
+            }
+        </div>
+
+        <div>
+            @if (formulario.get('cidade').hasError('required') && formulario.get('cidade').touched) {
+            <p class="alert alert-warning">O campo cidade é obrigatório!</p>
+            }
+
+            @if (formulario.get('cidade').hasError('minlength') && formulario.get('cidade').touched) {
+            <p class="alert alert-warning">O campo cidade precisa ter no minimo 3 caracteres!</p>
+            }
+
+            @if (formulario.get('cidade').hasError('onlyLetters')) {
+            <p class="alert alert-warning">O campo cidade deve conter apenas letras!</p>
+            }
+        </div>
+
+        <!-- Inputs -->
+        <input type="text" placeholder="Nome" class="form-control" formControlName="nome">
+        <input type="number" placeholder="Idade" class="form-control" formControlName="idade">
+        <input type="text" placeholder="Cidade" class="form-control" formControlName="cidade">
+
+        <!-- Criando os botões e inserindo suas funções -->
+        @if (btnCadastrar) {
+        <input type="button" (click)="cadastrar()" value="Cadastrar" class="btn btn-primary"
+            [disabled]="formulario.invalid">
+        } @else {
+        <input type="button" (click)="deletar()" value="Remover" class="btn btn-primary"
+            [disabled]="formulario.invalid">
+        <input type="button" (click)="alterar()" value="Alterar" class="btn btn-primary">
+        <input type="button" (click)="cancelar()" value="Cancelar" class="btn btn-primary">
+        }
+    </form>
+
+    <!-- Criação de tabelas -->
+    <table style="width:100% ">
+        <thead style="background-color: #8b8add;"> <!-- Cabeçalho -->
+            <tr> <!-- Linha -->
+                <th>#</th> <!-- Coluna -->
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Cidade</th>
+                <th>Selecionar</th>
+            </tr>
+        </thead>
+
+        <!-- Função de listagem de usuário -->
+        <tbody>
+            <tr *ngFor="let v of vetor; index as i" [ngClass]="i % 2 === 0 ? 'claro' : 'escuro'">
+                <td>{{i + 1}}</td>
+                <td>{{v.nome}}</td>
+                <td>{{v.idade}}</td>
+                <td>{{v.cidade}}</td>
+                <td><button class="btn btn-primary" (click)="selecionar(i)">Selecionar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</body>

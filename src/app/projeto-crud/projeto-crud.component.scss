@@ -1,0 +1,48 @@
+form {
+    width: 100%;
+    max-width: 500px; /* Limita a largura máxima a 500 pixels */
+    margin: 30px auto; /* Define uma margem de 30 pixels e centraliza horizontalmente */
+    text-align: center; /* Centraliza o texto dentro do formulário */
+    padding: 30px; /* Adiciona um espaçamento interno de 30 pixels */
+    box-sizing: border-box; /* Inclui a borda e o padding no cálculo da largura */
+    border: 2px solid rgb(156, 156, 228);
+}
+
+input {
+    width: 100%; /* Define a largura dos inputs para 100% do container pai */
+    max-width: 400px; /* Limita a largura máxima a 400 pixels */
+    margin-bottom: 10px;
+    margin-right: 10px;
+    box-sizing: border-box; /* Inclui a borda e o padding no cálculo da largura */
+}
+
+th, tr {
+    border-bottom: 1px solid #bdbdbd;
+    padding: 8px;
+}
+
+.claro {
+    background-color: #96a5ff;
+}
+
+.escuro {
+    background-color: #8698ff;
+}
+
+/* Media queries para diferentes tamanhos de tela */
+@media (max-width: 768px) {
+    form {
+        padding: 20px; /* Reduz o espaçamento interno para telas menores */
+    }
+
+    input {
+        max-width: 100%; /* Remove a limitação de largura máxima para inputs */
+        margin-right: 0; /* Remove a margem à direita para melhor ajuste */
+    }
+}
+
+@media (max-width: 480px) {
+    form {
+        padding: 15px; /* Reduz ainda mais o espaçamento interno para telas muito pequenas */
+    }
+}
